@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DINO DIMENSION | نصرالدين بن هجيرة — أنظمة ذكية وبرمجيات مخصصة</title>
+  <meta name="description" content="DINO DIMENSION - أنظمة ذكية وبرمجيات مخصصة. بيع برامج جاهزة وتطوير برامج خاصة." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-soft: #0c0b14;
+      --card: rgba(16, 13, 28, 0.78);
+      --card-hover: rgba(24, 19, 42, 0.92);
+      --primary: #c084fc;
+      --primary-bright: #e879f9;
+      --primary-dim: #9333ea;
+      --accent-cyan: #38bdf8;
+      --glow: rgba(192, 132, 252, 0.4);
+      --text: #f5f3ff;
+      --muted: #a1a1aa;
+      --border: rgba(192, 132, 252, 0.22);
+      --border-strong: rgba(192, 132, 252, 0.55);
+      --success: #4ade80;
+      --warning: #fbbf24;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ===== ANIMATED MULTI-LAYER BACKGROUND ===== */
+    .bg-stage {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(88, 28, 135, 0.22) 0%, transparent 60%),
+        radial-gradient(circle at 15% 85%, rgba(49, 46, 129, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #050509 0%, #090714 50%, #050509 100%);
+    }
+
+    /* Interactive Constellation & Particles Canvas */
+    #bgCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.95;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Moving Perspective Cyber Grid */
+    .cyber-grid {
+      position: absolute;
+      left: -50%;
+      right: -50%;
+      bottom: -35%;
+      height: 85%;
+      background-image:
+        linear-gradient(to right, rgba(192, 132, 252, 0.14) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(192, 132, 252, 0.14) 1px, transparent 1px);
+      background-size: 56px 56px;
+      transform: perspective(520px) rotateX(68deg);
+      transform-origin: center top;
+      animation: gridMove 14s linear infinite;
+      mask-image: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%, transparent 95%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%, transparent 95%);
+      opacity: 0.65;
+      transition: opacity 0.5s ease;
+    }
+
+    @keyframes gridMove {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 0 56px, 0 56px; }
+    }
+
+    /* Floating Aurora Orbs */
+    .ambient {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(115px);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      will-change: transform;
+    }
+    .ambient-1 {
+      width: 620px; height: 620px;
+      top: -160px; right: -120px;
+      background: radial-gradient(circle, rgba(147, 51, 234, 0.55) 0%, rgba(124, 58, 237, 0) 70%);
+      animation: floatOrb1 18s ease-in-out infinite alternate;
+    }
+    .ambient-2 {
+      width: 560px; height: 560px;
+      bottom: -120px; left: -140px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.48) 0%, rgba(67, 56, 202, 0) 70%);
+      animation: floatOrb2 22s ease-in-out infinite alternate;
+    }
+    .ambient-3 {
+      width: 460px; height: 460px;
+      top: 38%; left: 32%;
+      background: radial-gradient(circle, rgba(217, 70, 239, 0.32) 0%, rgba(56, 189, 248, 0.12) 50%, transparent 72%);
+      animation: floatOrb3 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrb1 {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-120px, 90px, 0) scale(1.16); }
+      100% { transform: translate3d(-60px, 190px, 0) scale(0.94); }
+    }
+    @keyframes floatOrb2 {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(130px, -110px, 0) scale(1.2); }
+      100% { transform: translate3d(70px, -200px, 0) scale(0.92); }
+    }
+    @keyframes floatOrb3 {
+      0% { transform: translate3d(-80px, -40px, 0) scale(0.9) rotate(0deg); }
+      50% { transform: translate3d(90px, 60px, 0) scale(1.22) rotate(18deg); }
+      100% { transform: translate3d(-30px, 110px, 0) scale(1.05) rotate(-12deg); }
+    }
+
+    /* Subtle film grain */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 14px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(7, 7, 13, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    header.scrolled {
+      padding: 10px 5%;
+      background: rgba(7, 7, 13, 0.9);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.55);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ffffff 0%, #e9d5ff 40%, #c084fc 75%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 14px var(--primary), 0 0 28px var(--primary-dim);
+      animation: pulseDot 2.2s infinite ease-in-out;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.65; }
+    }
+
+    nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(192, 132, 252, 0.16);
+      color: var(--primary);
+      border-color: rgba(192, 132, 252, 0.3);
+      box-shadow: 0 0 18px rgba(192, 132, 252, 0.14);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: rgba(192, 132, 252, 0.08);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      height: 40px;
+      padding: 0 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.25s ease;
+    }
+    .icon-btn:hover, .icon-btn.active {
+      background: rgba(192, 132, 252, 0.22);
+      border-color: var(--primary);
+      box-shadow: 0 0 18px var(--glow);
+      transform: translateY(-1px);
+    }
+
+    /* Equalizer animation for music button */
+    .eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 13px;
+    }
+    .eq-bars span {
+      width: 2.5px;
+      height: 4px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+    .icon-btn.playing .eq-bars span:nth-child(1) { animation: eqBounce 0.6s infinite ease-in-out; }
+    .icon-btn.playing .eq-bars span:nth-child(2) { animation: eqBounce 0.6s infinite 0.18s ease-in-out; }
+    .icon-btn.playing .eq-bars span:nth-child(3) { animation: eqBounce 0.6s infinite 0.35s ease-in-out; }
+    @keyframes eqBounce {
+      0%, 100% { height: 4px; }
+      50% { height: 13px; }
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      font-size: 1.35rem;
+      cursor: pointer;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 130px 5% 70px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      color: #f0abfc;
+      margin-bottom: 24px;
+      background: rgba(192, 132, 252, 0.1);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 25px rgba(192, 132, 252, 0.18);
+      animation: badgeFloat 4s ease-in-out infinite;
+    }
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff 0%, #f5d0fe 35%, #c084fc 70%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 32px rgba(192, 132, 252, 0.35));
+    }
+
+    .hero .tagline {
+      font-size: clamp(1.08rem, 2.2vw, 1.3rem);
+      color: #d4d4d8;
+      max-width: 620px;
+      margin: 0 auto 34px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 54px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 999px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #c084fc 0%, #9333ea 50%, #6d28d9 100%);
+      color: white;
+      box-shadow: 0 8px 28px rgba(147, 51, 234, 0.45);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 36px rgba(168, 85, 247, 0.65);
+    }
+    .btn-ghost {
+      background: rgba(18, 14, 28, 0.65);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover {
+      background: rgba(192, 132, 252, 0.16);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Stats Strip */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(140px, 210px));
+      gap: 16px;
+      width: 100%;
+      max-width: 680px;
+    }
+    .stat-pill {
+      background: rgba(16, 13, 28, 0.68);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+    .stat-pill:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
+    }
+    .stat-pill strong {
+      display: block;
+      font-family: 'Orbitron', 'Cairo', sans-serif;
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .stat-pill span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 90px 5%;
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-title h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ffffff, #e9d5ff, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-title p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* ===== FILTER TABS ===== */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .filter-btn {
+      background: rgba(16, 13, 28, 0.75);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(192, 132, 252, 0.2);
+      color: var(--text);
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(192, 132, 252, 0.2);
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .project-card.hidden {
+      display: none;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      background: var(--card-hover);
+      border-color: var(--border-strong);
+      box-shadow: 0 22px 55px rgba(124, 58, 237, 0.28);
+    }
+
+    .project-card .thumb {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: #090812;
+    }
+    .project-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .project-card:hover .thumb img { transform: scale(1.07); }
+
+    .thumb-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(7, 7, 13, 0.82);
+      border: 1px solid var(--border);
+      color: #e9d5ff;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      backdrop-filter: blur(6px);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .project-card .body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .project-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .project-card p {
+      font-size: 0.94rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .project-tag {
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 8px;
+      background: rgba(192, 132, 252, 0.1);
+      color: #d8b4fe;
+      border: 1px solid rgba(192, 132, 252, 0.18);
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid rgba(192, 132, 252, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.08rem;
+    }
+    .price.free { color: var(--success); }
+    .price.dev { color: var(--warning); }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .card-btn {
+      padding: 7px 14px;
+      border-radius: 10px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+    .card-btn:hover {
+      border-color: var(--primary);
+      background: rgba(192, 132, 252, 0.18);
+    }
+    .card-btn.primary {
+      background: linear-gradient(135deg, #a855f7, #7c3aed);
+      border-color: transparent;
+      color: #fff;
+    }
+    .card-btn.primary:hover {
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+      transform: translateY(-2px);
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-photo {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 0 60px rgba(124, 58, 237, 0.25);
+      background: #050508;
+    }
+    .about-photo img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 62%;
+      max-height: 500px;
+      transition: transform 0.5s ease;
+    }
+    .about-photo:hover img {
+      transform: scale(1.03);
+    }
+    .about-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5,5,9,0.78) 0%, transparent 42%);
+      pointer-events: none;
+    }
+
+    .about-content h3 {
+      font-size: 1.9rem;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+    .about-content .role {
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .about-content p {
+      margin-bottom: 24px;
+      color: #e4e4e7;
+      font-size: 1.06rem;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .skill {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(192, 132, 252, 0.12);
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: #f3e8ff;
+      transition: 0.25s;
+    }
+    .skill:hover {
+      border-color: var(--primary);
+      background: rgba(192, 132, 252, 0.22);
+      transform: translateY(-2px);
+    }
+
+    /* ===== ORDER FORM ===== */
+    .order-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 720px;
+      margin: 0 auto;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      transition: border-color 0.35s, box-shadow 0.35s;
+    }
+    .order-box.highlight-pulse {
+      border-color: var(--primary-bright);
+      box-shadow: 0 0 45px rgba(217, 70, 239, 0.35);
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #e4e4e7;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(8, 8, 14, 0.85);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      transition: 0.25s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.18);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      backdrop-filter: blur(10px);
+    }
+    .contact-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-6px);
+      box-shadow: 0 14px 34px rgba(124, 58, 237, 0.24);
+    }
+    .contact-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .contact-card h4 {
+      font-size: 1.08rem;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+    .contact-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 5%;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      background: rgba(5, 5, 9, 0.7);
+      backdrop-filter: blur(10px);
+    }
+    footer .logo-sm {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary);
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    /* ===== UPGRADED LIGHTBOX GALLERY ===== */
+    .gallery-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 4, 9, 0.94);
+      backdrop-filter: blur(18px);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.35s ease;
+      padding: 20px;
+    }
+    .gallery-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .gallery-top {
+      width: 100%;
+      max-width: 1020px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+    .gallery-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .gallery-title {
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .gallery-counter {
+      background: rgba(192, 132, 252, 0.16);
+      border: 1px solid var(--border);
+      color: #e9d5ff;
+      padding: 3px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .gallery-close {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(192, 132, 252, 0.2);
+      border: 1px solid var(--border-strong);
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .gallery-close:hover {
+      background: var(--primary-dim);
+      transform: rotate(90deg);
+    }
+
+    .gallery-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1020px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 55vh;
+    }
+    .gallery-main-img {
+      max-width: 100%;
+      max-height: 66vh;
+      border-radius: 16px;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+      object-fit: contain;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: rgba(12, 10, 22, 0.85);
+      border: 1px solid var(--border-strong);
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s;
+      z-index: 3;
+    }
+    .gallery-nav:hover {
+      background: var(--primary-dim);
+      box-shadow: 0 0 20px var(--glow);
+    }
+    .gallery-prev { right: 12px; }
+    .gallery-next { left: 12px; }
+
+    .gallery-thumbs {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      overflow-x: auto;
+      max-width: 95vw;
+      padding: 6px;
+    }
+    .gallery-thumb {
+      width: 76px;
+      height: 52px;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.45;
+      border: 2px solid transparent;
+      transition: 0.25s;
+    }
+    .gallery-thumb.active, .gallery-thumb:hover {
+      opacity: 1;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .gallery-bottom-bar {
+      margin-top: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* ===== TOAST NOTIFICATION ===== */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 11000;
+      background: rgba(18, 14, 30, 0.95);
+      border: 1px solid var(--primary);
+      color: var(--text);
+      padding: 12px 20px;
+      border-radius: 14px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transform: translateY(80px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ===== MUSIC IFRAME (hidden) ===== */
+    #yt-player {
+      position: absolute;
+      width: 1px; height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 360px; margin: 0 auto; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; max-width: 320px; }
+    }
+
+    @media (max-width: 760px) {
+      nav { display: none; }
+      nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(7, 7, 13, 0.97);
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+      .hero { padding-top: 110px; }
+      .order-box { padding: 28px 20px; }
+      .btn-label-hide-mobile { display: none; }
+    }
+
+    /* success message */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      color: var(--success);
+      font-size: 1.15rem;
+    }
+    .form-success.show { display: block; }
+  </style>
+</head>
+<body>
+  <!-- ANIMATED BACKGROUND STAGE -->
+  <div class="bg-stage" id="bgStage">
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
+    <div class="ambient ambient-3"></div>
+    <div class="cyber-grid" id="cyberGrid"></div>
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <a href="#home" class="logo">
+      <span class="logo-dot"></span>
+      <span>DINO DIMENSION</span>
+    </a>
+    <nav id="nav">
+      <a href="#home" class="active">الرئيسية</a>
+      <a href="#projects">المشاريع</a>
+      <a href="#about">من أنا</a>
+      <a href="#order">اطلب الآن</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+    <div class="header-controls">
+      <button class="icon-btn" id="bgModeBtn" title="تغيير نمط الخلفية المتحركة" aria-label="تغيير الخلفية">
+        <span>✨</span>
+        <span class="btn-label-hide-mobile" id="bgModeLabel">أبعاد متحركة</span>
+      </button>
+      <button class="icon-btn" id="musicBtn" title="تشغيل / إيقاف الموسيقى" aria-label="موسيقى">♪</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="القائمة">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-badge">✦ أنظمة ذكية • برمجيات مخصصة • حلول متكاملة</div>
+    <h1>DINO DIMENSION</h1>
+    <p class="tagline">
+      مطور متخصص في إنشاء أنظمة ذكية وبرمجيات مخصصة.<br />
+      أحول أفكارك إلى حلول احترافية جاهزة للاستخدام الفوري.
+    </p>
+    <div class="hero-actions">
+      <a href="#order" class="btn btn-primary">اطلب برنامجك الآن 🚀</a>
+      <a href="#projects" class="btn btn-ghost">استعرض المشاريع والأنظمة</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-pill">
+        <strong>+5 أنظمة</strong>
+        <span>برامج جاهزة وقابلة للتخصيص</span>
+      </div>
+      <div class="stat-pill">
+        <strong>100% عربي</strong>
+        <span>واجهات عصرية سهلة الاستخدام</span>
+      </div>
+      <div class="stat-pill">
+        <strong>دعم مباشر</strong>
+        <span>تطوير وتعديلات حسب طلبك</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-title reveal">
+      <h2>أفضل مشاريعي</h2>
+      <p>برامج جاهزة للبيع الفوري + إمكانية تطوير حلول خاصة حسب طلبك</p>
+    </div>
+
+    <div class="filter-bar reveal" id="filterBar">
+      <button class="filter-btn active" data-filter="all">الكل (5)</button>
+      <button class="filter-btn" data-filter="ready">برامج جاهزة للبيع (3)</button>
+      <button class="filter-btn" data-filter="free">تطبيقات مجانية (1)</button>
+      <button class="filter-btn" data-filter="dev">مدعوم بالذكاء الاصطناعي (1)</button>
+    </div>
+
+    <div class="projects-grid">
+      <!-- 1: Pedagogical Center -->
+      <div class="project-card reveal" data-category="ready" data-product="pedo"
+           data-title="إدارة المراكز البيداغوجية (MOPIC)"
+           data-images='["images/projects/pedo1.jpg","images/projects/pedo2.jpg"]'>
+        <div class="thumb" onclick="openGalleryFromCard(this)">
+          <img src="images/projects/pedo1.jpg" alt="إدارة المراكز البيداغوجية" loading="lazy" />
+          <span class="thumb-badge">📸 2 صور للنظام</span>
+        </div>
+        <div class="body">
+          <h3>إدارة المراكز البيداغوجية</h3>
+          <p>نظام متكامل لإدارة المراكز النفسية والبيداغوجية، ملفات الأطفال، الفحوصات، والمتابعة الإدارية.</p>
+          <div class="project-tags">
+            <span class="project-tag">ملفات الأطفال</span>
+            <span class="project-tag">سجل الفحوصات</span>
+            <span class="project-tag">إدارة شاملة</span>
+          </div>
+          <div class="card-footer">
+            <span class="price">50,000 دج</span>
+            <div class="card-actions">
+              <button type="button" class="card-btn" onclick="openGalleryFromCard(this)">معاينة</button>
+              <button type="button" class="card-btn primary" onclick="selectProductForOrder('pedo', 'ready')">اطلب الآن</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: Food Inventory -->
+      <div class="project-card reveal" data-category="ready" data-product="food"
+           data-title="إدارة مخزون الإطعام والمطاعم"
+           data-images='["images/projects/food1.jpg","images/projects/food2.jpg","images/projects/food3.jpg","images/projects/food4.jpg"]'>
+        <div class="thumb" onclick="openGalleryFromCard(this)">
+          <img src="images/projects/food1.jpg" alt="إدارة مخزون الإطعام" loading="lazy" />
+          <span class="thumb-badge">📸 4 صور للنظام</span>
+        </div>
+        <div class="body">
+          <h3>إدارة مخزون الإطعام</h3>
+          <p>نظام احترافي لإدارة المطاعم والإطعام، الاستهلاك اليومي، قوائم الوجبات، التنبيهات، والنسخ الاحتياطي.</p>
+          <div class="project-tags">
+            <span class="project-tag">الاستهلاك اليومي</span>
+            <span class="project-tag">تقارير وإحصائيات</span>
+            <span class="project-tag">نسخ احتياطي سحابي</span>
+          </div>
+          <div class="card-footer">
+            <span class="price">30,000 دج</span>
+            <div class="card-actions">
+              <button type="button" class="card-btn" onclick="openGalleryFromCard(this)">معاينة</button>
+              <button type="button" class="card-btn primary" onclick="selectProductForOrder('food', 'ready')">اطلب الآن</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: POS -->
+      <div class="project-card reveal" data-category="ready" data-product="pos"
+           data-title="برنامج المبيعات ونقاط البيع (POS)"
+           data-images='["images/projects/pos-cover.png","images/projects/pos2.jpg","images/projects/pos3.jpg","images/projects/pos4.jpg","images/projects/pos1.jpg"]'>
+        <div class="thumb" onclick="openGalleryFromCard(this)">
+          <img src="images/projects/pos-cover.png" alt="برنامج مبيعات POS" loading="lazy" />
+          <span class="thumb-badge">📸 5 صور للنظام</span>
+        </div>
+        <div class="body">
+          <h3>برنامج مبيعات (POS)</h3>
+          <p>مخصص للمحلات التجارية ونقاط البيع مع إدارة البيع والشراء اللحظي، الموردين والزبائن، الفواتير والديون.</p>
+          <div class="project-tags">
+            <span class="project-tag">البيع اللحظي</span>
+            <span class="project-tag">الفواتير والديون</span>
+            <span class="project-tag">إدارة المخزون</span>
+          </div>
+          <div class="card-footer">
+            <span class="price">25,000 دج</span>
+            <div class="card-actions">
+              <button type="button" class="card-btn" onclick="openGalleryFromCard(this)">معاينة</button>
+              <button type="button" class="card-btn primary" onclick="selectProductForOrder('pos', 'ready')">اطلب الآن</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: MISBHA -->
+      <div class="project-card reveal" data-category="free" data-product="misbha"
+           data-title="برنامج المسبحة الرقمية (MISBHA)"
+           data-images='["images/projects/misbha1.png","images/projects/misbha2.png"]'>
+        <div class="thumb" onclick="openGalleryFromCard(this)">
+          <img src="images/projects/misbha1.png" alt="MISBHA" loading="lazy" />
+          <span class="thumb-badge">📸 2 صور للنظام</span>
+        </div>
+        <div class="body">
+          <h3>برنامج MISBHA</h3>
+          <p>تطبيق المسبحة الرقمية للذكر والتسبيح مع أذكار وأحاديث صحيحة — متوافق مع الهاتف والكمبيوتر.</p>
+          <div class="project-tags">
+            <span class="project-tag">أذكار وأحاديث</span>
+            <span class="project-tag">عداد تسبيح</span>
+            <span class="project-tag">متاح مجاناً</span>
+          </div>
+          <div class="card-footer">
+            <span class="price free">مجاني</span>
+            <div class="card-actions">
+              <button type="button" class="card-btn" onclick="openGalleryFromCard(this)">معاينة</button>
+              <button type="button" class="card-btn primary" onclick="selectProductForOrder('misbha', 'ready')">احصل عليه</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: MAINT-IQ -->
+      <div class="project-card reveal" data-category="dev" data-product="maint"
+           data-title="إدارة صيانة المؤسسات الصناعية (MAINT-IQ)"
+           data-images='["images/projects/maint1.png","images/projects/maint3.png","images/projects/maint4.png","images/projects/maint5.png","images/projects/maint2.png"]'>
+        <div class="thumb" onclick="openGalleryFromCard(this)">
+          <img src="images/projects/maint1.png" alt="صيانة المؤسسات MAINT-IQ" loading="lazy" />
+          <span class="thumb-badge">📸 5 صور للنظام</span>
+        </div>
+        <div class="body">
+          <h3>إدارة صيانة المؤسسات الصناعية</h3>
+          <p>نظام MAINT-IQ الذكي للصيانة الوقائية والتنبؤية، مؤشرات MTBF/MTTR، تصنيف ABC لقطع الغيار، والسجل المالي.</p>
+          <div class="project-tags">
+            <span class="project-tag">ذكاء اصطناعي</span>
+            <span class="project-tag">تحليل MTBF / EOQ</span>
+            <span class="project-tag">متعدد الصلاحيات</span>
+          </div>
+          <div class="card-footer">
+            <span class="price dev">قيد التطوير</span>
+            <div class="card-actions">
+              <button type="button" class="card-btn" onclick="openGalleryFromCard(this)">معاينة</button>
+              <button type="button" class="card-btn primary" onclick="selectProductForOrder('maint', 'custom')">احجز نسختك</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title reveal">
+      <h2>من أنا</h2>
+      <p>نبذة مختصرة عني وعن مهاراتي التقنية والهندسية</p>
+    </div>
+
+    <div class="about-grid reveal">
+      <div class="about-photo">
+        <img src="images/me.png" alt="نصرالدين بن هجيرة" />
+      </div>
+      <div class="about-content">
+        <h3>نصرالدين بن هجيرة</h3>
+        <p class="role">مطور أنظمة وبرمجيات مخصصة</p>
+        <p>
+          مطور متخصص في إنشاء أنظمة ذكية وبرمجيات مخصصة.
+          أحول أفكارك إلى حلول احترافية قابلة للاستخدام الفوري.
+          أعمل على تطبيقات سطح المكتب والويب، وأنظمة الإدارة المتكاملة،
+          والحلول الصناعية المدعومة بالذكاء الاصطناعي.
+        </p>
+        <div class="skills">
+          <span class="skill">✅ برمجة تطبيقات</span>
+          <span class="skill">✅ أنظمة إدارة ومخزون</span>
+          <span class="skill">✅ هندسة ميكانيكية وكهربائية</span>
+          <span class="skill">✅ حلول ذكية وذكاء اصطناعي</span>
+          <span class="skill">✅ واجهات عربية احترافية</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="section-title reveal">
+      <h2>اطلب الآن</h2>
+      <p>اختر برنامجاً جاهزاً أو اطلب تطوير برنامج خاص يناسب مشروعك</p>
+    </div>
+
+    <div class="order-box reveal" id="orderBox">
+      <form name="order" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="orderForm">
+        <input type="hidden" name="form-name" value="order" />
+        <p style="display:none;">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">الاسم الكامل *</label>
+            <input type="text" id="name" name="name" required placeholder="اسمك الكريم" />
+          </div>
+          <div class="form-group">
+            <label for="phone">رقم الواتساب *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="05xxxxxxxx / 07xxxxxxxx" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">البريد الإلكتروني</label>
+          <input type="email" id="email" name="email" placeholder="example@gmail.com" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="type">نوع الطلب *</label>
+            <select id="type" name="type" required>
+              <option value="">— اختر —</option>
+              <option value="ready">شراء برنامج جاهز</option>
+              <option value="custom">تطوير برنامج خاص</option>
+              <option value="both">الاثنين معاً</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="product">البرنامج المطلوب (إن وُجد)</label>
+            <select id="product" name="product">
+              <option value="">— اختياري —</option>
+              <option value="pedo">إدارة المراكز البيداغوجية (50,000 دج)</option>
+              <option value="food">إدارة مخزون الإطعام (30,000 دج)</option>
+              <option value="pos">برنامج مبيعات POS (25,000 دج)</option>
+              <option value="misbha">برنامج MISBHA (مجاني)</option>
+              <option value="maint">إدارة صيانة المؤسسات MAINT-IQ (قيد التطوير)</option>
+              <option value="other">أخرى / برنامج خاص</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">تفاصيل الطلب *</label>
+          <textarea id="message" name="message" required placeholder="اكتب هنا وصف البرنامج اللي تبيه أو أي ملاحظات..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+          <a href="https://wa.me/213796285122?text=السلام%20عليكم%20،%20أريد%20طلب%20برنامج%20من%20DINO%20DIMENSION"
+             class="btn btn-ghost" target="_blank" rel="noopener">
+            💬 واتساب مباشر
+          </a>
+        </div>
+        <p class="form-note">بعد الإرسال راح توصلك رسالة تأكيد، ونرد عليك في أقرب وقت.</p>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        ✅ تم إرسال طلبك بنجاح!<br />
+        راح نتواصل معاك قريباً.
+        <div style="margin-top: 18px;">
+          <button type="button" class="btn btn-ghost" id="resetOrderBtn">إرسال طلب آخر</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title reveal">
+      <h2>تواصل معي</h2>
+      <p>اختر الطريقة اللي تناسبك للتواصل المباشر</p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <a class="contact-card" href="https://wa.me/213796285122" target="_blank" rel="noopener">
+        <div class="icon">💬</div>
+        <h4>واتساب</h4>
+        <p dir="ltr">0796 28 51 22</p>
+      </a>
+      <a class="contact-card" href="mailto:benhajiransreeldin55@gmail.com">
+        <div class="icon">📧</div>
+        <h4>البريد الإلكتروني</h4>
+        <p>benhajiransreeldin55@gmail.com</p>
+      </a>
+      <a class="contact-card" href="https://t.me/DINMANDO" target="_blank" rel="noopener">
+        <div class="icon">✈️</div>
+        <h4>تيليغرام</h4>
+        <p dir="ltr">@DINMANDO</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo-sm">DINO DIMENSION</div>
+    <p>© 2026 نصرالدين بن هجيرة — جميع الحقوق محفوظة</p>
+  </footer>
+
+  <!-- UPGRADED LIGHTBOX GALLERY -->
+  <div class="gallery-overlay" id="galleryOverlay" role="dialog" aria-modal="true">
+    <div class="gallery-top">
+      <div class="gallery-title-wrap">
+        <div class="gallery-title" id="galleryTitle"></div>
+        <span class="gallery-counter" id="galleryCounter">1 / 1</span>
+      </div>
+      <button type="button" class="gallery-close" id="galleryCloseBtn" aria-label="إغلاق">✕</button>
+    </div>
+
+    <div class="gallery-stage" id="galleryContent">
+      <button type="button" class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="السابق">❯</button>
+      <img class="gallery-main-img" id="galleryMainImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="معاينة النظام" />
+      <button type="button" class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="التالي">❮</button>
+    </div>
+
+    <div class="gallery-thumbs" id="galleryThumbs"></div>
+
+    <div class="gallery-bottom-bar">
+      <button type="button" class="btn btn-primary" id="galleryOrderBtn">اطلب هذا البرنامج الآن</button>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toastMsg"></div>
+
+  <!-- YouTube player (hidden) for music -->
+  <div id="yt-player"></div>
+
+  <script>
+    // ===== Toast Helper (replaces blocking alert) =====
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    // ===== Animated Interactive Background (3 Modes) =====
+    (function initAnimatedBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const cyberGrid = document.getElementById('cyberGrid');
+      const modeBtn = document.getElementById('bgModeBtn');
+      const modeLabel = document.getElementById('bgModeLabel');
+      const ctx = canvas.getContext('2d');
+
+      const modes = [
+        { id: 'constellation', name: 'أبعاد متحركة', showCanvas: true, showGrid: true },
+        { id: 'warp', name: 'نجوم نيون', showCanvas: true, showGrid: false },
+        { id: 'aurora', name: 'توهج هادئ', showCanvas: false, showGrid: true }
+      ];
+      let currentModeIdx = 0;
+
+      let width = 0, height = 0;
+      let particles = [];
+      let shootingStars = [];
+      let animFrameId = null;
+      const mouse = { x: -9999, y: -9999, radius: 150 };
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        createParticles();
+      }
+
+      function createParticles() {
+        const count = Math.min(85, Math.max(36, Math.floor((width * height) / 18000)));
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.65,
+            vy: (Math.random() - 0.5) * 0.65,
+            r: Math.random() * 2.2 + 1,
+            hue: Math.random() > 0.25 ? 275 : 198,
+            alpha: Math.random() * 0.55 + 0.25,
+            pulse: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      function spawnShootingStar() {
+        if (shootingStars.length < 2 && Math.random() < 0.018) {
+          shootingStars.push({
+            x: Math.random() * width * 0.8 + width * 0.1,
+            y: Math.random() * height * 0.35,
+            vx: -6 - Math.random() * 4,
+            vy: 3 + Math.random() * 2.5,
+            len: 70 + Math.random() * 50,
+            life: 1
+          });
+        }
+      }
+
+      function render() {
+        const mode = modes[currentModeIdx].id;
+        ctx.clearRect(0, 0, width, height);
+
+        if (mode !== 'aurora') {
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.pulse += 0.025;
+
+            if (mode === 'warp') {
+              p.y -= Math.abs(p.vy) * 2.2 + 0.4;
+              p.x += Math.sin(p.pulse * 0.5) * 0.35;
+              if (p.y < -10) {
+                p.y = height + 10;
+                p.x = Math.random() * width;
+              }
+            } else {
+              p.x += p.vx;
+              p.y += p.vy;
+              if (p.x < 0 || p.x > width) p.vx *= -1;
+              if (p.y < 0 || p.y > height) p.vy *= -1;
+            }
+
+            // Mouse interaction
+            const dxMouse = p.x - mouse.x;
+            const dyMouse = p.y - mouse.y;
+            const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+            if (distMouse < mouse.radius && distMouse > 0) {
+              const force = (mouse.radius - distMouse) / mouse.radius;
+              p.x += (dxMouse / distMouse) * force * 1.4;
+              p.y += (dyMouse / distMouse) * force * 1.4;
+            }
+
+            const glowAlpha = p.alpha + Math.sin(p.pulse) * 0.15;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${p.hue}, 90%, 75%, ${Math.max(0.15, glowAlpha)})`;
+            ctx.fill();
+
+            // Connect nearby particles in constellation mode
+            if (mode === 'constellation') {
+              for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                const dx = p.x - p2.x;
+                const dy = p.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 130) {
+                  const lineAlpha = (1 - dist / 130) * 0.22;
+                  ctx.beginPath();
+                  ctx.moveTo(p.x, p.y);
+                  ctx.lineTo(p2.x, p2.y);
+                  ctx.strokeStyle = `rgba(192, 132, 252, ${lineAlpha})`;
+                  ctx.lineWidth = 0.85;
+                  ctx.stroke();
+                }
+              }
+            }
+          }
+
+          // Shooting stars
+          spawnShootingStar();
+          for (let i = shootingStars.length - 1; i >= 0; i--) {
+            const s = shootingStars[i];
+            s.x += s.vx;
+            s.y += s.vy;
+            s.life -= 0.022;
+            if (s.life <= 0) {
+              shootingStars.splice(i, 1);
+              continue;
+            }
+            const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.vx * 8, s.y - s.vy * 8);
+            grad.addColorStop(0, `rgba(240, 171, 252, ${s.life})`);
+            grad.addColorStop(1, 'rgba(192, 132, 252, 0)');
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(s.x - s.vx * 8, s.y - s.vy * 8);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          }
+        }
+
+        animFrameId = requestAnimationFrame(render);
+      }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      window.addEventListener('mouseleave', () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+
+      modeBtn.addEventListener('click', () => {
+        currentModeIdx = (currentModeIdx + 1) % modes.length;
+        const m = modes[currentModeIdx];
+        modeLabel.textContent = m.name;
+        canvas.style.opacity = m.showCanvas ? '0.95' : '0';
+        cyberGrid.style.opacity = m.showGrid ? '0.65' : '0';
+        showToast('نمط الخلفية: ' + m.name);
+      });
+
+      resize();
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+      animFrameId = requestAnimationFrame(render);
+    })();
+
+    // ===== Header scroll & active nav link =====
+    const header = document.getElementById('header');
+    const nav = document.getElementById('nav');
+    const sections = document.querySelectorAll('section[id]');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+      let current = 'home';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 140) current = s.id;
+      });
+      nav.querySelectorAll('a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+
+    // ===== Mobile menu =====
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('open'));
+    });
+
+    // ===== Scroll Reveal Observer =====
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => obs.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+
+    // ===== Project Category Filter =====
+    const filterBtns = document.querySelectorAll('#filterBar .filter-btn');
+    const projectCards = document.querySelectorAll('.projects-grid .project-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.classList.toggle('hidden', !match);
+        });
+      });
+    });
+
+    // ===== Quick Order Selection from Card =====
+    function selectProductForOrder(productCode, orderType) {
+      const typeSelect = document.getElementById('type');
+      const prodSelect = document.getElementById('product');
+      const orderSection = document.getElementById('order');
+      const orderBox = document.getElementById('orderBox');
+
+      if (typeSelect && orderType) typeSelect.value = orderType;
+      if (prodSelect && productCode) prodSelect.value = productCode;
+
+      if (orderSection) {
+        orderSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (orderBox) {
+        orderBox.classList.add('highlight-pulse');
+        setTimeout(() => orderBox.classList.remove('highlight-pulse'), 1800);
+      }
+      showToast('تم اختيار البرنامج في نموذج الطلب بالأسفل 👇');
+    }
+
+    // ===== Upgraded Lightbox Gallery =====
+    let currentGalleryImages = [];
+    let currentGalleryIndex = 0;
+    let currentGalleryProduct = '';
+    let currentGalleryType = 'ready';
+
+    function openGalleryFromCard(el) {
+      const card = el.closest('.project-card');
+      if (!card) return;
+      openGallery(card);
+    }
+
+    function openGallery(card) {
+      const overlay = document.getElementById('galleryOverlay');
+      const title = document.getElementById('galleryTitle');
+      try {
+        currentGalleryImages = JSON.parse(card.dataset.images || '[]');
+      } catch (e) {
+        currentGalleryImages = [];
+      }
+      currentGalleryIndex = 0;
+      currentGalleryProduct = card.dataset.product || '';
+      currentGalleryType = card.dataset.category === 'dev' ? 'custom' : 'ready';
+      title.textContent = card.dataset.title || '';
+
+      renderGallerySlide();
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function renderGallerySlide() {
+      const mainImg = document.getElementById('galleryMainImg');
+      const counter = document.getElementById('galleryCounter');
+      const thumbs = document.getElementById('galleryThumbs');
+
+      if (!currentGalleryImages.length) return;
+      mainImg.src = currentGalleryImages[currentGalleryIndex];
+      counter.textContent = (currentGalleryIndex + 1) + ' / ' + currentGalleryImages.length;
+
+      thumbs.innerHTML = '';
+      currentGalleryImages.forEach((src, idx) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'صورة ' + (idx + 1);
+        img.className = 'gallery-thumb' + (idx === currentGalleryIndex ? ' active' : '');
+        img.addEventListener('click', () => {
+          currentGalleryIndex = idx;
+          renderGallerySlide();
+        });
+        thumbs.appendChild(img);
+      });
+    }
+
+    function stepGallery(delta) {
+      if (!currentGalleryImages.length) return;
+      currentGalleryIndex = (currentGalleryIndex + delta + currentGalleryImages.length) % currentGalleryImages.length;
+      renderGallerySlide();
+    }
+
+    function closeGallery() {
+      document.getElementById('galleryOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('galleryCloseBtn').addEventListener('click', closeGallery);
+    document.getElementById('galleryPrevBtn').addEventListener('click', () => stepGallery(-1));
+    document.getElementById('galleryNextBtn').addEventListener('click', () => stepGallery(1));
+    document.getElementById('galleryOrderBtn').addEventListener('click', () => {
+      const prod = currentGalleryProduct;
+      const typ = currentGalleryType;
+      closeGallery();
+      selectProductForOrder(prod, typ);
+    });
+    document.getElementById('galleryOverlay').addEventListener('click', e => {
+      if (e.target.id === 'galleryOverlay') closeGallery();
+    });
+    document.addEventListener('keydown', e => {
+      const isOpen = document.getElementById('galleryOverlay').classList.contains('active');
+      if (!isOpen) return;
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowLeft') stepGallery(1);
+      if (e.key === 'ArrowRight') stepGallery(-1);
+    });
+
+    // ===== Music (YouTube + Web Audio Ambient Synth Fallback) =====
+    let player = null;
+    let ytReady = false;
+    let isPlaying = false;
+    let audioCtx = null;
+    let synthNodes = [];
+    const musicBtn = document.getElementById('musicBtn');
+
+    window.onYouTubeIframeAPIReady = function() {
+      try {
+        player = new YT.Player('yt-player', {
+          height: '1',
+          width: '1',
+          videoId: 'GPYG4MQkU2s',
+          playerVars: {
+            autoplay: 0,
+            controls: 0,
+            loop: 1,
+            playlist: 'GPYG4MQkU2s',
+            modestbranding: 1
+          },
+          events: {
+            onReady: () => { ytReady = true; },
+            onStateChange: (e) => {
+              if (e.data === YT.PlayerState.ENDED && player && player.playVideo) {
+                player.playVideo();
+              }
+            }
+          }
+        });
+      } catch (err) {}
+    };
+
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+
+    function startAmbientSynth() {
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        stopAmbientSynth();
+        const freqs = [110, 164.81, 220, 277.18];
+        freqs.forEach((f, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+          osc.frequency.value = f;
+          gain.gain.value = 0.018;
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          synthNodes.push({ osc, gain });
+        });
+      } catch (e) {}
+    }
+
+    function stopAmbientSynth() {
+      synthNodes.forEach(n => {
+        try { n.osc.stop(); n.osc.disconnect(); } catch (e) {}
+      });
+      synthNodes = [];
+    }
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        if (ytReady && player && player.pauseVideo) {
+          try { player.pauseVideo(); } catch (e) {}
+        }
+        stopAmbientSynth();
+        musicBtn.classList.remove('playing', 'active');
+        musicBtn.textContent = '♪';
+        isPlaying = false;
+        showToast('تم إيقاف الموسيقى مؤقتاً');
+      } else {
+        if (ytReady && player && player.playVideo) {
+          try {
+            player.playVideo();
+            player.unMute();
+            player.setVolume(45);
+          } catch (e) {
+            startAmbientSynth();
+          }
+        } else {
+          startAmbientSynth();
+        }
+        musicBtn.classList.add('playing', 'active');
+        musicBtn.textContent = '❚❚';
+        isPlaying = true;
+        showToast('🎵 تم تشغيل موسيقى الخلفية');
+      }
+    });
+
+    // ===== Open /order /projects /about /contact without 404 =====
+    (function () {
+      const path = location.pathname.replace(/^\/+|\/+$/g, '');
+      const ids = ['home', 'projects', 'about', 'order', 'contact'];
+      if (!ids.includes(path)) return;
+      const el = document.getElementById(path);
+      if (!el) return;
+      requestAnimationFrame(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+
+    // ===== Form submit (AJAX → no 404 after send) =====
+    const form = document.getElementById('orderForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const resetOrderBtn = document.getElementById('resetOrderBtn');
+
+    if (resetOrderBtn) {
+      resetOrderBtn.addEventListener('click', () => {
+        form.reset();
+        form.style.display = 'block';
+        formSuccess.classList.remove('show');
+      });
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'جاري الإرسال...';
+      }
+      try {
+        const data = new FormData(form);
+        const targetUrl = form.getAttribute('action') || '/';
+        const res = await fetch(targetUrl, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+        if (!res.ok) throw new Error('send failed');
+        form.style.display = 'none';
+        formSuccess.classList.add('show');
+        showToast('✅ تم استلام طلبك بنجاح!');
+      } catch (err) {
+        const name = form.name.value || '';
+        const phone = form.phone.value || '';
+        const type = form.type.value || '';
+        const product = form.product.value || '';
+        const message = form.message.value || '';
+        const text = encodeURIComponent(
+          'طلب جديد من الموقع\nالاسم: ' + name +
+          '\nالهاتف: ' + phone +
+          '\nالنوع: ' + type +
+          '\nالبرنامج: ' + product +
+          '\nالتفاصيل: ' + message
+        );
+        window.open('https://wa.me/213796285122?text=' + text, '_blank');
+        form.style.display = 'none';
+        formSuccess.classList.add('show');
+        showToast('تم تحويل الطلب إلى واتساب مباشرة 💬');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'إرسال الطلب';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
